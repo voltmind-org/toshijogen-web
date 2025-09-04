@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本投資助言株式会社 - 金融リテラシーの向上をあなたと共に</title>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <h1>日本投資助言株式会社</h1>
+                <div class="loading-chart">
+                    <div class="chart-bar" style="animation-delay: 0s;"></div>
+                    <div class="chart-bar" style="animation-delay: 0.2s;"></div>
+                    <div class="chart-bar" style="animation-delay: 0.4s;"></div>
+                    <div class="chart-bar" style="animation-delay: 0.6s;"></div>
+                    <div class="chart-bar" style="animation-delay: 0.8s;"></div>
+                </div>
+            </div>
+            <div class="loading-progress-container">
+                <div class="loading-progress"></div>
+                <div class="loading-percentage">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="image/logo.svg" alt="日本投資助言株式会社" class="logo-image">
+                <div class="logo-pulse"></div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#news">お知らせ</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="home" class="hero">
+            <!-- 登録情報 -->
+            <div class="registration-info">
+                <div class="reg-info-content">
+                    <div class="reg-number">関東財務局長（金商）第2289号</div>
+                    <div class="reg-association">
+                        <span class="assoc-name">一般社団法人 日本投資顧問業協会</span>
+                        <span class="member-number">会員番号 第012-02478号</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 背景アニメーション -->
+            <div class="hero-background">
+                <div class="financial-grid"></div>
+                <div class="data-streams">
+                    <div class="data-stream" style="left: 10%; animation-delay: 0s;"></div>
+                    <div class="data-stream" style="left: 25%; animation-delay: 1s;"></div>
+                    <div class="data-stream" style="left: 40%; animation-delay: 2s;"></div>
+                    <div class="data-stream" style="left: 55%; animation-delay: 0.5s;"></div>
+                    <div class="data-stream" style="left: 70%; animation-delay: 1.5s;"></div>
+                    <div class="data-stream" style="left: 85%; animation-delay: 2.5s;"></div>
+                </div>
+                <div class="floating-numbers">
+                    <span class="number" style="left: 15%; top: 20%; animation-delay: 0s;">¥</span>
+                    <span class="number" style="left: 80%; top: 15%; animation-delay: 1s;">$</span>
+                    <span class="number" style="left: 25%; top: 70%; animation-delay: 2s;">€</span>
+                    <span class="number" style="left: 75%; top: 80%; animation-delay: 1.5s;">£</span>
+                    <span class="number" style="left: 50%; top: 25%; animation-delay: 0.5s;">₿</span>
+                </div>
+                <div class="chart-lines">
+                    <svg class="chart-svg" viewBox="0 0 1200 800">
+                        <path class="chart-line" d="M0,400 Q300,200 600,300 T1200,100" />
+                        <path class="chart-line" d="M0,500 Q300,350 600,400 T1200,250" />
+                        <path class="chart-line" d="M0,600 Q300,450 600,500 T1200,400" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- メインコンテンツ -->
+            <div class="hero-content">
+                <div class="hero-main">    
+                    <h1 class="hero-title">
+                        <span class="title-word" data-text="金融リテラシーの向上を">金融リテラシーの向上を</span>
+                        <span class="title-word" data-text="あなたと共に">あなたと共に</span>
+                    </h1>
+                    
+                    <div class="hero-subtitle-container">
+                        <span class="hero-subtitle typing-text">あなたと作る未来、その先へ</span>
+                        <span class="subtitle-cursor"></span>
+                    </div>
+                    
+                    <!-- 市場データ表示 -->
+                    <div class="market-ticker">
+                        <div class="ticker-content">
+                            <span class="ticker-item">日経平均: <span class="price up">33,500.25 <small>+125.30</small></span></span>
+                            <span class="ticker-item">TOPIX: <span class="price up">2,450.15 <small>+15.20</small></span></span>
+                            <span class="ticker-item">USD/JPY: <span class="price down">148.25 <small>-0.35</small></span></span>
+                            <span class="ticker-item">EUR/JPY: <span class="price up">162.80 <small>+0.85</small></span></span>
+                            <span class="ticker-item">Bitcoin: <span class="price up">¥6,250,000 <small>+125,000</small></span></span>
+                        </div>
+                    </div>
+                    
+                    <p class="hero-description">我々はそんな皆様の目的を実現していきます。</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary">
+                            <span class="btn-text">サービス一覧</span>
+                            <div class="btn-particles"></div>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="btn-text">お問い合わせ</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- スクロールインジケーター -->
+            <div class="scroll-indicator">
+                <div class="scroll-text">SCROLL</div>
+                <div class="scroll-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+            </div>
+
+            <!-- パーティクルシステム -->
+            <div class="particles-container">
+                <canvas id="particles-canvas"></canvas>
+            </div>
+        </section>
+
+        <!-- サービスセクション -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>当社の投資助言一覧</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <!-- 株式投資 -->
+                <div class="service-category">
+                    <h3>株式投資</h3>
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <div class="card-icon">📈</div>
+                            <h4>NEKO ADVISORIES STOCK MEMBERS</h4>
+                            <p>個別銘柄の配信サービスです。<br>サービス開始以来、ネコアドではストップ高を31本も予想しました！</p>
+                            <a href="#" class="service-link">Click！</a>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="card-icon">🔊</div>
+                            <h4>鶴の一声</h4>
+                            <p>伊藤智洋氏が満を持して当社助言チームに参加！<br>個人投資家歴20年の伊藤智洋が結果で示します！</p>
+                            <a href="#" class="service-link">Click！</a>
+                        </div>
+                        
+                        <!-- <div class="service-card">
+                            <div class="card-icon">📊</div>
+                            <h4>日経平均株価・短期シナリオ</h4>
+                            <p>伊藤智洋が読む市況分析をお届けします。</p>
+                            <a href="#" class="service-link">Click！</a>
+                        </div> -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FX投資セクション - 新しいデザインに変更 -->
+        <section class="fx-section">
+            <div class="container">
+                <div class="fx-content">
+                    <div class="fx-header">
+                        <h3>FX投資</h3>
+                        <div class="section-line"></div>
+                    </div>
+                    
+                    <div class="fx-card">
+                        <div class="fx-card-content">
+                            <div class="fx-icon">💹</div>
+                            <h4 class="fx-title">Nana's CATS</h4>
+                            <p class="fx-description">テクニカルトレードを行う一般投資家達の存在を念頭に戦略を練った理論をシステムに実装。<br>特殊開発されたトレンド選択ダイナミクス知能により、ポジションの取得や利確、そして撤退の戦略を立体イメージの様に構築、損小利大を目指し利益を狙っていきます。</p>
+                            
+                            <div class="fx-features">
+                                <div class="fx-feature">
+                                    <div class="fx-feature-icon">📊</div>
+                                    <div class="fx-feature-text">テクニカル分析</div>
+                                </div>
+                                <div class="fx-feature">
+                                    <div class="fx-feature-icon">🎯</div>
+                                    <div class="fx-feature-text">損小利大戦略</div>
+                                </div>
+                                <div class="fx-feature">
+                                    <div class="fx-feature-icon">⚡</div>
+                                    <div class="fx-feature-text">AI知能システム</div>
+                                </div>
+                            </div>
+                            
+                            <a href="#" class="fx-link service-link">Click！</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 更新情報セクション -->
+        <section id="news" class="news">
+            <div class="container">
+                <div class="section-header">
+                    <h2>更新情報</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="news-grid">
+                    <div class="news-item">
+                        <div class="news-date">2024年3月8日</div>
+                        <h4>お知らせ</h4>
+                        <a href="#" class="news-link">Click！</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">2024年3月18日</div>
+                        <h4>コラム</h4>
+                        <a href="#" class="news-link">Click！</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube動画セクション -->
+        <section id="youtube" class="youtube-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>YouTube Channel</h2>
+                    <div class="section-line"></div>
+                    <p class="youtube-subtitle">投資に関する最新情報をお届け</p>
+                </div>
+                <div class="youtube-grid">
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/0pplI-E8y60" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【コラム】トランプ大統領の改革を成功させるためのポイントは！（20250523）</h4>
+                            <p>最新の政治経済分析をお届け</p>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/zNHgiLs5-jc" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【近未来の予測】自動運転、石油輸送ルートなどを考慮すると、日本は脱炭素すべき！</h4>
+                            <p>未来のエネルギー戦略を詳しく解説</p>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/S-BHW_4WPmg" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【投資スクール】第一回 値段が動く理由</h4>
+                            <p>プロの視点から見た今後の展望</p>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/5t4H3sw6IHQ" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【投資スクール】第二回 長期中期短期の期間の意味</h4>
+                            <p>成功への道筋を詳しく解説</p>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/V8NwjMfwcoM" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【コラム】トランプ大統領の改革と陰謀、ビットコインが暴騰、そして暴落へ</h4>
+                            <p>最新のトレンドを徹底分析</p>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/htQ_nZWmU70" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>【投資スクール】第三回（長期に市場全体を読む）</h4>
+                            <p>初心者にも分かりやすく解説</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="youtube-cta">
+                    <a href="https://www.youtube.com/@japan-ia" target="_blank" class="btn btn-youtube">
+                        <span class="btn-text">YouTubeチャンネルを見る</span>
+                        <svg class="youtube-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 投資顧問業について -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>投資顧問業(助言)とは？</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="about-content">
+                    <p>投資顧問業とは、顧客との直接のコミュニケーションを通じ、顧客の特性、ニーズを<br>踏まえたテーラーメードで、かつ専門的な資産運用サービスを提供する仕事です。</p>
+                    <a href="#" class="btn btn-outline">詳細を見る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 金融アドバイザーAIセクション -->
+        <section class="ai-advisor-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>金融アドバイザーAI</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="ai-description">
+                    <p>お客様の金融に関する疑問に24時間365日お答えできるAIチャットボットをご用意しております。</p>
+                    
+                    <p>画面右下に表示されている<span class="chat-icon-preview">💬</span>ボタンをクリックすると、チャットウィンドウが開きます。<br>投資、資産運用、FX、リスク管理など、金融に関する幅広いご質問にAIが即座にお答えいたします。</p>
+                    
+                    <p>このAIチャットボットは、お客様の金融リテラシー向上をサポートするために開発されました。<br>基本的な質問から専門的な質問まで、レベルに応じた回答を提供いたします。<br>個人情報は一切取得いたしませんので、安心してご利用ください。</p>
+                    
+                    <p>まずはお気軽にAIチャットボットでご相談ください。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせセクション -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>お問い合わせ</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h4>所在地</h4>
+                            <p>〒103-0014<br>東京都中央区日本橋蛎殻町1-18-1<br>フルカワビル4階</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>電話番号</h4>
+                            <p>03-6555-3701<br>（土日・祝日を除く10:00～17:00）</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>メールアドレス</h4>
+                            <p>support@japan-ia.co.jp</p>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">お名前</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">送信</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <!-- 法的表示 -->
+            <div class="legal-content">
+                <div class="legal-item">
+                    <h4>【投資顧問契約に係るリスクについて】</h4>
+                    <p>国内上場有価証券等には株式相場、金利水準、為替相場、不動産相場、商品相場等の価格の変動等および有価証券の発行者等の信用状況（財務・経営状況を含む）の悪化等それらに関する外部評価の変化等を直接の原因として損失が生ずるおそれ（元本欠損リスク）、または元本を超過する損失を生ずるおそれ（元本超過損リスク）があります。<br>
+                    信用取引を行う場合は、信用取引の額が当該取引等についてお客様の差入れた委託保証金または証拠金の額（以下「委託保証金等の額」といいます）を上回る場合があるとともに、対象となる有価証券の価格または指標等の変動により損失の額がお客様の差入れた委託保証金等の額を上回るおそれ（元本超過損リスク）があります。手数料等およびリスク等については、当該商品等の契約締結前交付書面やお客様向け資料等をよくお読みください。</p>
+                </div>
+                
+                <div class="legal-item">
+                    <h4>【免責事項】</h4>
+                    <p>ホームページ及びメール上での提供情報は著作権法によって保護されており、日本投資助言株式会社（以下「弊社」）に無断で転用、複製又は販売等を行う事を固く禁じます。<br>
+                    情報提供は、弊社の情報提供を目的とするものであり、投資勧誘を目的とするものではありません。<br>
+                    ホームページ及びメール上での提供情報はあくまでも情報の提供であり、売買指示ではございません。実際の取引におきましては、自己資金枠等を十分考慮した上で、ご自身の判断・責任のもとご利用ください。弊社は提供情報の内容については万全を期しておりますが、その正確性、完全性を保証するものではなく、会員様が提供情報の内容に基づいて行われる取引、その他の行為、及びその結果については、これを保証するものではありません。また、これら情報に基づく取引その他の行為により被った如何なる損害についても弊社は一切の責任を負いかねますのであらかじめご了承ください。</p>
+                </div>
+                
+                <div class="legal-item">
+                    <h4>【重要事項及び注意事項】</h4>
+                    <p>投資顧問契約にあたっては「金融商品取引法第３７条の３」の規定に基づき、ご負担いただく助言報酬等（会費及び成功報酬金）や、助言の内容および方法、リスクや留意点を記載した「契約締結前交付書面」をあらかじめお読みいただき、内容をご理解の上ご契約をお願いしております。<br>
+                    ご契約に関する事前の注意事項、助言報酬等、提供サービスの内容および方法に関しましては、各サービスの詳細ページにて事前にご確認いただき、内容をご理解の上お取引ください。</p>
+                </div>
+                
+                <div class="legal-item">
+                    <h4>【金融商品取引法第37条に基づく表示】</h4>
+                    <p>商号 ： 日本投資助言株式会社<br>
+                    業務内容 ： 投資助言・代理業<br>
+                    登録番号 ： 関東財務局長（金商）第2289号<br>
+                    加入協会 ： 一般社団法人 日本投資顧問業協会 会員番号　第012-02478号</p>
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="image/logo.svg" alt="日本投資助言株式会社" class="footer-logo">
+                </div>
+                <div class="footer-section">
+                    <h4>重要事項</h4>
+                    <ul>
+                        <li><a href="#">特定商取引法に基づく表記</a></li>
+                        <li><a href="#">勧誘方針</a></li>
+                        <li><a href="#">個人情報保護方針</a></li>
+                        <li><a href="#">免責事項</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>support@japan-ia.co.jp</p>
+                    <p>03-6555-3701</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 日本投資助言株式会社</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- リスク警告モーダル -->
+    <div id="risk-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>投資顧問契約に係るリスクについて</h3>
+            <p>国内上場有価証券等には株式相場、金利水準、為替相場、不動産相場、商品相場等の価格の変動等および有価証券の発行者等の信用状況（財務・経営状況を含む）の悪化等それらに関する外部評価の変化等を直接の原因として損失が生ずるおそれ（元本欠損リスク）、または元本を超過する損失を生ずるおそれ（元本超過損リスク）があります。</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
