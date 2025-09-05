@@ -111,9 +111,11 @@
                         <div class="ticker-content">
                             <span class="ticker-item">日経平均: <span class="price up">33,500.25 <small>+125.30</small></span></span>
                             <span class="ticker-item">TOPIX: <span class="price up">2,450.15 <small>+15.20</small></span></span>
-                            <span class="ticker-item">USD/JPY: <span class="price down">148.25 <small>-0.35</small></span></span>
-                            <span class="ticker-item">EUR/JPY: <span class="price up">162.80 <small>+0.85</small></span></span>
-                            <span class="ticker-item">Bitcoin: <span class="price up">¥6,250,000 <small>+125,000</small></span></span>
+                            <!-- 為替レートは前日終値との比較で前日比を表示（GMO API klinesエンドポイントから前日終値を取得） -->
+                            <span class="ticker-item">USD/JPY: <span class="price" id="usd-jpy-price">情報取得中... <small id="usd-jpy-change">-</small></span></span>
+                            <span class="ticker-item">EUR/JPY: <span class="price" id="eur-jpy-price">情報取得中... <small id="eur-jpy-change">-</small></span></span>
+                            <!-- Bitcoinレートは前日終値との比較で前日比を表示（GMO API klinesエンドポイントから前日終値を取得） -->
+                            <span class="ticker-item">Bitcoin: <span class="price" id="btc-price">情報取得中... <small id="btc-change">-</small></span></span>
                         </div>
                     </div>
                     

@@ -636,9 +636,245 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 市場ティッカーの更新
+    // GMO APIから為替データを取得
+    // 前日比計算用のデータを保存（前日終値を取得して保存）
+    let previousDayCloseRates = {
+        'USD_JPY': null, // 前日終値（APIから取得）
+        'EUR_JPY': null, // 前日終値（APIから取得）
+        'BTC': null      // Bitcoin前日終値（APIから取得）
+    };
+    
+    // 前日の日付を取得（YYYYMMDD形式）
+    function getPreviousDate() {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        return yesterday.toISOString().slice(0, 10).replace(/-/g, '');
+    }
+
+    // 前日終値を取得する関数
+    async function fetchPreviousDayClose(symbol) {
+        try {
+            const previousDate = getPreviousDate();
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            
+            // Bitcoinと為替で異なるエンドポイントを使用
+            let targetUrl;
+            if (symbol === 'BTC') {
+                targetUrl = `https://api.coin.z.com/public/v1/klines?symbol=${symbol}&interval=1min&date=${previousDate}`;
+            } else {
+                targetUrl = `https://forex-api.coin.z.com/public/v1/klines?symbol=${symbol}&priceType=ASK&interval=1min&date=${previousDate}`;
+            }
+            
+            const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.status === 0 && data.data && data.data.length > 0) {
+                // 最後のデータ（終値）を取得
+                const lastKline = data.data[data.data.length - 1];
+                return parseFloat(lastKline.close);
+            }
+        } catch (error) {
+            console.error(`Previous day close fetch error for ${symbol}:`, error);
+        }
+        return null;
+    }
+
+    // Bitcoinの現在レートを取得する関数
+    async function fetchBitcoinData() {
+        try {
+            // 前日終値を取得（初回のみ）
+            if (!previousDayCloseRates.BTC) {
+                previousDayCloseRates.BTC = await fetchPreviousDayClose('BTC');
+            }
+
+            // CORS問題を回避するため、CORS proxyを使用
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://api.coin.z.com/public/v1/ticker?symbol=BTC';
+            const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.status === 0 && data.data && data.data.length > 0) {
+                const btcData = data.data[0];
+                const currentPrice = parseFloat(btcData.last);
+                const previousClose = previousDayCloseRates.BTC;
+                
+                if (previousClose) {
+                    updateBitcoinDisplay(currentPrice, previousClose);
+                }
+                console.log('Bitcoin API: Data updated successfully');
+            } else {
+                console.warn('Bitcoin API: Invalid response format', data);
+            }
+        } catch (error) {
+            console.error('Bitcoin API fetch error:', error);
+            showBitcoinApiError();
+        }
+    }
+
+    // 現在の為替レートと前日終値を取得
+    async function fetchForexData() {
+        try {
+            // 前日終値を取得（初回のみ）
+            if (!previousDayCloseRates.USD_JPY) {
+                previousDayCloseRates.USD_JPY = await fetchPreviousDayClose('USD_JPY');
+            }
+            if (!previousDayCloseRates.EUR_JPY) {
+                previousDayCloseRates.EUR_JPY = await fetchPreviousDayClose('EUR_JPY');
+            }
+
+            // CORS問題を回避するため、CORS proxyを使用
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://forex-api.coin.z.com/public/v1/ticker';
+            const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.status === 0 && data.data) {
+                updateForexRates(data.data);
+                console.log('GMO API: Data updated successfully');
+            } else {
+                console.warn('GMO API: Invalid response format', data);
+            }
+        } catch (error) {
+            console.error('GMO API fetch error:', error);
+            // エラー時は前回のデータを維持し、フォールバック値を表示
+            showApiError();
+        }
+    }
+
+    function showApiError() {
+        // API取得に失敗した場合の表示
+        const usdJpyElement = document.getElementById('usd-jpy-price');
+        const eurJpyElement = document.getElementById('eur-jpy-price');
+        
+        if (usdJpyElement && !usdJpyElement.dataset.errorShown) {
+            usdJpyElement.innerHTML = '情報取得中... <small style="color: #fbbf24;">-</small>';
+            usdJpyElement.dataset.errorShown = 'true';
+        }
+        
+        if (eurJpyElement && !eurJpyElement.dataset.errorShown) {
+            eurJpyElement.innerHTML = '情報取得中... <small style="color: #fbbf24;">-</small>';
+            eurJpyElement.dataset.errorShown = 'true';
+        }
+    }
+
+    function showBitcoinApiError() {
+        // Bitcoin API取得に失敗した場合の表示
+        const btcElement = document.getElementById('btc-price');
+        
+        if (btcElement && !btcElement.dataset.errorShown) {
+            btcElement.innerHTML = '情報取得中... <small style="color: #fbbf24;">-</small>';
+            btcElement.dataset.errorShown = 'true';
+        }
+    }
+
+    function updateForexRates(forexData) {
+        forexData.forEach(rate => {
+            const symbol = rate.symbol;
+            const currentAsk = parseFloat(rate.ask);
+            const currentBid = parseFloat(rate.bid);
+            
+            if (symbol === 'USD_JPY') {
+                // 前日終値との比較で前日比を計算
+                const previousClose = previousDayCloseRates.USD_JPY;
+                if (previousClose) {
+                    updateRateDisplay('usd-jpy', currentAsk, previousClose);
+                }
+            } else if (symbol === 'EUR_JPY') {
+                // 前日終値との比較で前日比を計算
+                const previousClose = previousDayCloseRates.EUR_JPY;
+                if (previousClose) {
+                    updateRateDisplay('eur-jpy', currentAsk, previousClose);
+                }
+            }
+        });
+    }
+
+    function updateRateDisplay(currencyId, currentRate, previousCloseRate) {
+        const priceElement = document.getElementById(`${currencyId}-price`);
+        
+        if (priceElement) {
+            // 前日終値との差分を計算（前日比）
+            const change = currentRate - previousCloseRate;
+            
+            // 価格を更新（小数点以下3桁で表示）
+            priceElement.innerHTML = `${currentRate.toFixed(3)} <small id="${currencyId}-change">${change >= 0 ? '+' : ''}${change.toFixed(3)}</small>`;
+            
+            // 変更量を更新（前日比）
+            const changeElement = document.getElementById(`${currencyId}-change`);
+            if (changeElement) {
+                changeElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(3)}`;
+            }
+            
+            // 色を更新（アニメーション効果付き）
+            priceElement.style.transition = 'color 0.3s ease';
+            if (change > 0) {
+                priceElement.className = 'price up'; // 前日比で上昇
+            } else if (change < 0) {
+                priceElement.className = 'price down'; // 前日比で下落
+            } else {
+                priceElement.className = 'price'; // 前日比で変化なし
+            }
+            
+            // エラー表示フラグをリセット
+            if (priceElement.dataset.errorShown) {
+                delete priceElement.dataset.errorShown;
+            }
+        }
+    }
+
+    // Bitcoinの表示を更新する関数
+    function updateBitcoinDisplay(currentPrice, previousClosePrice) {
+        const priceElement = document.getElementById('btc-price');
+        
+        if (priceElement) {
+            // 前日終値との差分を計算（前日比）
+            const change = currentPrice - previousClosePrice;
+            
+            // 価格を更新（円表示、小数点以下0桁で表示）
+            const formattedPrice = `¥${Math.round(currentPrice).toLocaleString()}`;
+            priceElement.innerHTML = `${formattedPrice} <small id="btc-change">${change >= 0 ? '+' : ''}${Math.round(change).toLocaleString()}</small>`;
+            
+            // 変更量を更新（前日比）
+            const changeElement = document.getElementById('btc-change');
+            if (changeElement) {
+                changeElement.textContent = `${change >= 0 ? '+' : ''}${Math.round(change).toLocaleString()}`;
+            }
+            
+            // 色を更新（アニメーション効果付き）
+            priceElement.style.transition = 'color 0.3s ease';
+            if (change > 0) {
+                priceElement.className = 'price up'; // 前日比で上昇
+            } else if (change < 0) {
+                priceElement.className = 'price down'; // 前日比で下落
+            } else {
+                priceElement.className = 'price'; // 前日比で変化なし
+            }
+            
+            // エラー表示フラグをリセット
+            if (priceElement.dataset.errorShown) {
+                delete priceElement.dataset.errorShown;
+            }
+        }
+    }
+
+    // 市場ティッカーの更新（従来のランダム更新は他の通貨ペア用に保持）
     function updateMarketTicker() {
-        const prices = document.querySelectorAll('.price');
+        const prices = document.querySelectorAll('.price:not(#usd-jpy-price):not(#eur-jpy-price):not(#btc-price)');
         prices.forEach(price => {
             const change = (Math.random() - 0.5) * 2;
             const currentValue = parseFloat(price.textContent.replace(/[^\d.-]/g, ''));
@@ -652,7 +888,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 5秒ごとに市場データを更新
+    // 初回データ取得
+    fetchForexData();
+    fetchBitcoinData();
+    
+    // 5秒ごとにGMO APIから為替データを更新
+    setInterval(fetchForexData, 5000);
+    
+    // 5秒ごとにBitcoinデータを更新
+    setInterval(fetchBitcoinData, 5000);
+    
+    // 5秒ごとにその他の市場データを更新
     setInterval(updateMarketTicker, 5000);
 });
 
