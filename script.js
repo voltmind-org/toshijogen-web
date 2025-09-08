@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // カードホバーエフェクト
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
+    const serviceCardsForHover = document.querySelectorAll('.service-card');
+    serviceCardsForHover.forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'translateY(-15px) scale(1.02)';
         });
@@ -200,14 +200,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('risk-modal');
     const closeModal = document.querySelector('.close');
     
-    // サービスリンククリック時にモーダル表示
+    // サービスリンククリック時の処理
     const serviceLinks = document.querySelectorAll('.service-link');
     serviceLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            // 外部URLを持つリンクは新規タブで開く（モーダル表示しない）
+            if (link.href && link.href !== '#' && !link.href.startsWith('#')) {
+                // 外部リンクの場合は通常のリンク動作を許可
+                return;
+            }
+            
+            // 内部リンクや#リンクの場合はモーダル表示
             e.preventDefault();
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         });
+    });
+
+    // 株式投資のサービスカード全体をクリック可能にする（NEKO ADVISORIES STOCK MEMBERS、鶴の一声のみ）
+    const stockServiceCards = document.querySelectorAll('.service-category .service-card');
+    stockServiceCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // 既にリンクがクリックされた場合は何もしない
+            if (e.target.tagName === 'A') {
+                return;
+            }
+            
+            // カード内のサービスリンクを探す
+            const serviceLink = card.querySelector('.service-link');
+            if (serviceLink && serviceLink.href && serviceLink.href !== '#' && !serviceLink.href.startsWith('#')) {
+                // 外部URLの場合は新規タブで開く
+                window.open(serviceLink.href, '_blank');
+            }
+        });
+        
+        // カードにホバー効果を追加（カーソルをポインターに変更）
+        card.style.cursor = 'pointer';
     });
     
     // モーダルを閉じる
