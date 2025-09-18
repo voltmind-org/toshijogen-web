@@ -2134,3 +2134,173 @@ section {
         justify-content: flex-start;
     }
 }
+
+/* 会社概要ページ用スタイル */
+.business-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.business-list li {
+    position: relative;
+    padding: 10px 0 10px 25px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.business-list li:last-child {
+    border-bottom: none;
+}
+
+.business-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.greeting-content {
+    text-align: left;
+}
+
+.greeting-quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 20px 0 30px 0;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+}
+
+.greeting-content p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.greeting-signature {
+    text-align: right;
+    font-weight: normal;
+    color: var(--primary-color);
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+}
+
+/* ご挨拶テキスト用スタイル */
+.greeting-text {
+    text-align: left;
+    line-height: 1.8;
+}
+
+.greeting-text p {
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.greeting-text p:first-child {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 20px 0 30px 0;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+}
+
+/* テーブルスタイル */
+.company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.company-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    width: 200px;
+    vertical-align: top;
+}
+
+.company-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    vertical-align: top;
+}
+
+.company-table tr:last-child td {
+    border-bottom: none;
+}
+
+.company-table tr:hover {
+    background: var(--background-light);
+}
+
+/* 会社概要ページ専用スタイル */
+.profile-page {
+    background: white;
+}
+
+.profile-page .services {
+    background: white;
+}
+
+.profile-page .about {
+    background: white;
+}
+
+/* レスポンシブ対応 - 会社概要ページ */
+@media (max-width: 768px) {
+    .greeting-quote {
+        font-size: 1.2rem;
+    }
+    
+    .greeting-content p {
+        font-size: 0.9rem;
+    }
+    
+    .greeting-signature {
+        font-size: 0.9rem;
+    }
+    
+    .business-list li {
+        font-size: 0.9rem;
+        padding: 8px 0 8px 20px;
+    }
+    
+    .greeting-text p:first-child {
+        font-size: 1rem;
+    }
+    
+    .greeting-text p {
+        font-size: 0.9rem;
+    }
+    
+    .company-table {
+        font-size: 0.9rem;
+    }
+    
+    .company-table th,
+    .company-table td {
+        padding: 10px 15px;
+    }
+    
+    .company-table th {
+        width: 150px;
+    }
+}
