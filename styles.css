@@ -2200,9 +2200,6 @@ section {
     border-bottom: none;
 }
 
-.company-table tr:hover {
-    background: var(--background-light);
-}
 
 /* 会社概要ページ専用スタイル */
 .profile-page {
