@@ -2136,53 +2136,6 @@ section {
 }
 
 /* 会社概要ページ用スタイル */
-.business-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.business-list li {
-    position: relative;
-    padding: 10px 0 10px 25px;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-light);
-    line-height: 1.6;
-}
-
-.business-list li:last-child {
-    border-bottom: none;
-}
-
-.business-list li::before {
-    content: '▶';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    color: var(--primary-color);
-    font-size: 0.8rem;
-}
-
-.greeting-content {
-    text-align: left;
-}
-
-.greeting-quote {
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--primary-color);
-    text-align: center;
-    margin: 20px 0 30px 0;
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-}
-
-.greeting-content p {
-    margin-bottom: 20px;
-    line-height: 1.8;
-    color: var(--text-dark);
-}
-
 .greeting-signature {
     text-align: right;
     font-weight: normal;
@@ -2266,21 +2219,8 @@ section {
 
 /* レスポンシブ対応 - 会社概要ページ */
 @media (max-width: 768px) {
-    .greeting-quote {
-        font-size: 1.2rem;
-    }
-    
-    .greeting-content p {
-        font-size: 0.9rem;
-    }
-    
     .greeting-signature {
         font-size: 0.9rem;
-    }
-    
-    .business-list li {
-        font-size: 0.9rem;
-        padding: 8px 0 8px 20px;
     }
     
     .greeting-text p:first-child {
